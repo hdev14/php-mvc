@@ -2,6 +2,8 @@
 
 require '../bootstrap/bootstrap.php';
 
+use function Helpers\Request\load;
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

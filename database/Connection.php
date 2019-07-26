@@ -2,6 +2,8 @@
 
 namespace Database;
 
+use function Helpers\Database\database;
+
 class Connection
 {
 

@@ -1,6 +1,8 @@
 <?php
 
 
+namespace Helpers\Request; 
+	
 function load() 
 {
 	// Pegar o primeiro parâmetro do array get no formato controller=method_name e instancia o controller e chama o method.
@@ -10,5 +12,6 @@ function load()
 
 	return $controller->home();
 
-
 }
+
+

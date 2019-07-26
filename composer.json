@@ -11,15 +11,17 @@
     "require": {},
     "autoload": {
         "files": [
-            "bootstrap/generics/database.php",
-            "bootstrap/generics/load.php",
-            "bootstrap/generics/render.php"
+            "bootstrap/helpers/database.php",
+            "bootstrap/helpers/generics.php",
+            "bootstrap/helpers/request.php",
+            "bootstrap/helpers/response.php"
         ],
         "psr-4": {
             "App\\": "app/",
             "App\\Controller\\": "app/controller/",
             "App\\Model\\": "app/model/",
             "Database\\": "database/",
+            "Database\\Migrations\\": "database/migrations/",
             "Storage\\": "storage/"
         }
     }

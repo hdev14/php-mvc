@@ -32,17 +32,10 @@ abstract class AbstractMigration
 		if (!isset($this->table)) {
 			throw new Exception("A tabela $table_name não contem colunas.");
 		}
-
-		function addColumns($column, $params) 
-		{
+		
+		$arr_columns = array_map(function($column, $params) {
 			return $column . " " . $params;	
-		}
-
-		$arr_columns = array_map(
-			'addColumns', 
-			array_keys($this->table), 
-			array_values($this->table)
-		);
+		}, array_keys($this->table), array_values($this->table));
 
 		$sql = "
 			CREATE TABLE IF NOT EXISTS $table_name(
