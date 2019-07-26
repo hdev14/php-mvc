@@ -4,21 +4,39 @@ abstract class AbstractMigration
 {
 
 	private $db;
+	private $table = array();
 	
 	final protected function __construct() 
 	{
 		$this->db = Connection::getConnection();
 	}
 
-	final protected function createTable(string $table_name, array $columns) : bool 
+	final protected function __set($attribute, $value) {
+		$this->table[$column] = $params;
+	}
+
+	final protected function setParams(string $type, array $otherParams) : string
+	{
+		return $type . " " . implode(" ", $otherParams);
+	}
+
+	final protected function createTable(string $table_name) : bool 
 	{
 
-		function addColumns($column, $attributes) 
-		{
-			return $column . " " . $attributes;	
+		if (!isset($this->table)) {
+			throw new Exception("A tabela $table_name não contem colunas.");
 		}
 
-		$arr_columns = array_map('addColumns', array_keys($columns), array_values($columns));
+		function addColumns($column, $params) 
+		{
+			return $column . " " . $params;	
+		}
+
+		$arr_columns = array_map(
+			'addColumns', 
+			array_keys($this->table), 
+			array_values($this->table)
+		);
 
 		$sql = "
 			CREATE TABLE IF NOT EXISTS $table_name(
@@ -29,7 +47,11 @@ abstract class AbstractMigration
 		try {
 			$this->db->exec($sql);
 		} catch (PDOException $e) {
-			echo $e->getMessage();
+			
+			echo "ERROR: " . $e->getMessage() 
+				. " LINE " . $e->getLine() 
+				. " FILE " . $e->getFile();
+
 			return false;
 		}
 
@@ -43,19 +65,19 @@ abstract class AbstractMigration
 		try {
 			$this->db->exec($sql);
 		} catch (Exception $e) {
-			echo $e->getMessage();
+			
+			echo "ERROR: " . $e->getMessage() 
+				. " LINE " . $e->getLine() 
+				. " FILE " . $e->getFile();
+
 			return false;
 		}
 
 		return true;
 	}
 
-	final protected function setAttribute(string $type, array $otherParams) : string
-	{
-		return $type . " " . implode(" ", $otherParams);
-	}
 
-	abstract protected function up();
-	abstract protected function down();
+	abstract protected function up() : bool;
+	abstract protected function down() : bool;
 
 }
