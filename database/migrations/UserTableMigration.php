@@ -1,5 +1,9 @@
 <?php
 
+namespace Database\Migrations;
+
+use AbstractMigration;
+
 class UserTableMigration extends AbstractMigration
 {
 	public function up()

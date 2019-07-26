@@ -1,5 +1,7 @@
 <?php
 
+use Database\Migrations\UserTableMigration;
+
 $user_table = new UserTableMigration();
 
 echo "Migrando...";

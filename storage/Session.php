@@ -1,5 +1,7 @@
 <?php
 
+namespace Storage;
+
 class Session
 {
 	

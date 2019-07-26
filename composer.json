@@ -1,0 +1,26 @@
+{
+    "name": "hermerson/php-mvc",
+    "description": "Arquitetura MVC feito com PHP",
+    "type": "project",
+    "authors": [
+        {
+            "name": "HermersonDev",
+            "email": "ne.hermerson@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "files": [
+            "bootstrap/generics/database.php",
+            "bootstrap/generics/load.php",
+            "bootstrap/generics/render.php"
+        ],
+        "psr-4": {
+            "App\\": "app/",
+            "App\\Controller\\": "app/controller/",
+            "App\\Model\\": "app/model/",
+            "Database\\": "database/",
+            "Storage\\": "storage/"
+        }
+    }
+}

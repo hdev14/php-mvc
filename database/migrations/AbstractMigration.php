@@ -1,5 +1,11 @@
 <?php
 
+namespace Database\Migrations;
+
+use Database\Connection;
+use PDOException;
+use Exception;
+
 abstract class AbstractMigration
 {
 
@@ -64,7 +70,7 @@ abstract class AbstractMigration
 		
 		try {
 			$this->db->exec($sql);
-		} catch (Exception $e) {
+		} catch (PDOException $e) {
 			
 			echo "ERROR: " . $e->getMessage() 
 				. " LINE " . $e->getLine() 
