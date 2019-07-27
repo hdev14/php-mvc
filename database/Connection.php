@@ -3,6 +3,10 @@
 namespace Database;
 
 use function Helpers\Database\database;
+use function Helpers\Generics\dd;
+use PDO;
+use PDOException;
+use Error;
 
 class Connection
 {
@@ -30,8 +34,8 @@ class Connection
 
 		if (is_null(self::$db)) { die(); }
 
-		self::$db->setAttributes(PDO::ATTR_CASE, PDO::CASE_LOWER);
-		self::$db->setAttributes(PDO::ATTR_ERRMODE, PDO::ERRMOD_EXCEPTION);
+		self::$db->setAttribute(PDO::ATTR_CASE, PDO::CASE_LOWER);
+		self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 		return self::$db;
 		
@@ -40,7 +44,7 @@ class Connection
 	private static function sqliteConnection(array $config)
 	{	
 		try {
-			return new PDO('sqlite', $config['dbname']);
+			return new PDO('sqlite:' . $config['dbname']);
 		} catch(PDOException $e) {
 			echo "[ERROR PDO SQLITE] " . $e->getMessage();
 		} 

@@ -12,13 +12,14 @@ abstract class AbstractMigration
 	private $db;
 	private $table = array();
 	
-	final protected function __construct() 
+	final public function __construct() 
 	{
 		$this->db = Connection::getConnection();
 	}
 
 	final protected function __set($attribute, $value) {
-		$this->table[$column] = $params;
+
+		$this->table[$attribute] = $value;
 	}
 
 	final protected function setParams(string $type, array $otherParams) : string
@@ -37,12 +38,13 @@ abstract class AbstractMigration
 			return $column . " " . $params;	
 		}, array_keys($this->table), array_values($this->table));
 
+
 		$sql = "
 			CREATE TABLE IF NOT EXISTS $table_name(
 				" . implode(",", $arr_columns) . "			
 			)
 		";
-
+		
 		try {
 			$this->db->exec($sql);
 		} catch (PDOException $e) {

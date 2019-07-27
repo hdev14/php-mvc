@@ -2,11 +2,10 @@
 
 namespace Helpers\Database;
 
+use function Helpers\Generics\dd;
+
 function database()
 {
-	echo "HHHHHH";
-	return include('../../database/config.php');
+	return include(__DIR__ . '/../../database/config.php');
 }
-
-
 

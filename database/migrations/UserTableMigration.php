@@ -6,7 +6,7 @@ use AbstractMigration;
 
 class UserTableMigration extends AbstractMigration
 {
-	public function up()
+	public function up() : bool
 	{
 		$this->id = $this->setParams('INT', ['PRIMARY KEY', 'AUTOINCREMENT']);
 		$this->name = $this->setParams('VARCHAR(45)', ['NOT NULL']);
@@ -16,7 +16,7 @@ class UserTableMigration extends AbstractMigration
 		return $this->createTable('user');
 	}
 
-	public static function down()
+	public function down() : bool
 	{
 		return $this->dropTable('user');
 	}
