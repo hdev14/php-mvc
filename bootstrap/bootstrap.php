@@ -5,9 +5,9 @@ session_start();
 require '../vendor/autoload.php';
 
 
-use Database\Migrations\TesteMigration;
+use App\Model\Model;
 
-$m = new TesteMigration();
+$m = new Model();
 
-\Helpers\Generics\dd($m->up());
+\Helpers\Generics\dd($m->findOne(['id' => 2, 'name' => 'model 2']));
 
