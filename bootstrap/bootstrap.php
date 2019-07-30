@@ -4,10 +4,11 @@ session_start();
 
 require '../vendor/autoload.php';
 
+use function Helpers\Generics\dd;
 
 use App\Model\Model;
 
 $m = new Model();
 
-\Helpers\Generics\dd($m->findOne(['id' => 2, 'name' => 'model 2']));
+dd($m->findOne(['name' => 'Model 7']));
 
