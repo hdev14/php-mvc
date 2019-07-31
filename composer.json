@@ -17,11 +17,13 @@
         ],
         "psr-4": {
             "App\\": "app/",
-            "App\\Controller\\": "app/controller/",
-            "App\\Model\\": "app/model/",
+            "App\\Interfaces\\": "app/interface/",
+            "App\\Controllers\\": "app/controller/",
+            "App\\Models\\": "app/model/",
             "Database\\": "database/",
             "Database\\Migrations\\": "database/migrations/",
             "Storage\\": "storage/"
+
         }
     }
 }

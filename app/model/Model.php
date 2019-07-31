@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Model;
+namespace App\Models;
 
 use PDO;
 use PDOException;
 use Database\Connection;
 use function Helpers\Generics\dd;
 
-class Model
+class Model implements \App\Interfaces\ModelInterface
 {
 	private $db;
 	private $data = array();
@@ -73,7 +73,7 @@ class Model
 	{
 		if (!$this->data) return false;
 
-		$prepare_params = self::prepareParams($this->data);
+		$prepare_params = $this->prepareParams($this->data);
 
 		unset($prepare_params['id']);
 
@@ -99,9 +99,9 @@ class Model
 		$object = null;
 		
 		if (!is_array($params)) {
-			$object = self::getById($params)->fetchObject(__CLASS__);
+			$object = $this->getById($params)->fetchObject(__CLASS__);
 		} elseif ($params) { // Verificação do array, caso seja passado um array inválido.
-			$object = self::getByParams($params)->fetchObject(__CLASS__);
+			$object = $this->getByParams($params)->fetchObject(__CLASS__);
 		} else {
 			throw new ArgumentCountError("ERROR function findOne() : The function require some parameter(id or params)!");
 		}
@@ -114,9 +114,9 @@ class Model
 		$objects = null;
 
 		if ($params) {
-			$objects = self::getByParams($params)->fetchAll(PDO::FETCH_CLASS, __CLASS__);
+			$objects = $this->getByParams($params)->fetchAll(PDO::FETCH_CLASS, __CLASS__);
 		} else {
-			$objects = self::getByParams($params)->fetchAll(PDO::FETCH_CLASS, __CLASS__);
+			$objects = $this->getByParams($params)->fetchAll(PDO::FETCH_CLASS, __CLASS__);
 		}
 
 		return $objects;

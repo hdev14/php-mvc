@@ -1,9 +1,16 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controllers;
 
-class Controller
-{
+class Controller implements \App\Interfaces\ControllerInterface
+{	
+	public function configs(){
+		return [
+			"GET" => ["home"],
+			"POST" => []
+		]
+	}
+
 	public function home() {
 		// $home = "home";
 		return $this->render('home', [
