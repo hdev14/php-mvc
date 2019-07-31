@@ -4,11 +4,15 @@ namespace App\Controllers;
 
 class Controller implements \App\Interfaces\ControllerInterface
 {	
-	public function configs(){
+	public function configs() {
 		return [
-			"GET" => ["home"],
-			"POST" => []
-		]
+			'POST' => [
+				'home'
+			],
+			"routes" => [
+				'h' => 'home'
+			]
+		];
 	}
 
 	public function home() {
